@@ -18,6 +18,7 @@
     ],
     "rules": {
         "indent": "off",
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "eslint-disable no-debugger": "off"
     }
 }
