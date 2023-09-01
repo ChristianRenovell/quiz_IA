@@ -19,6 +19,8 @@
     "rules": {
         "indent": "off",
         "prettier/prettier": "error",
-        "eslint-disable no-debugger": "off"
+        "eslint-disable no-debugger": "off",
+        "eslint-disable no-unused-vars": "off",
+        "no-debugger": "off"
     }
 }

@@ -5,26 +5,47 @@ import MostViewedCard from './components/mostViewedCard/MostViewedCard';
 import Grid from '@mui/material/Grid/Grid';
 import { MOST_VIEWED } from './shared/const/most-viewed';
 import TextField from '@mui/material/TextField';
-import { ThemeProvider, createTheme, styled } from '@mui/material';
+import { ThemeProvider, styled } from '@mui/material';
 import AlertDialog from './components/AlertDialog/AlertDialog';
-import React from 'react';
+import { theme } from './them';
+import { useState } from 'react';
 
 const WhiteTextField = styled(TextField)({
   '& .MuiInputBase-input': {
-    color: '#ffffff', // Cambia el color del texto del TextField
+    color: '#ffffff',
   },
   '& .MuiInputLabel-root': {
-    color: '#ffffff', // Cambia el color del label del TextField
+    color: '#ffffff',
+  },
+  '& .MuiInputBase-input:focus': {
+    color: '#ffffff',
+  },
+  '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
+    'border-color': '#ffffff',
   },
 });
 
-const theme = createTheme();
-
 function App() {
-  const [open, setOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [category, setCategory] = useState('');
+  const [inputCategory, setInputValue] = useState('');
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleOpenDialog = () => {
+    setCategory(inputCategory);
+    setDialogOpen(true);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
+
+  const selectMostView = (category: string) => {
+    setCategory(category);
+    setDialogOpen(true);
   };
 
   return (
@@ -46,7 +67,7 @@ function App() {
           style={{ marginTop: '50px', width: '80%', margin: '0 auto' }}
         >
           {MOST_VIEWED.map((item) => (
-            <Grid xs={4}>
+            <Grid xs={4} onClick={() => selectMostView(item.value)}>
               <MostViewedCard title={item.value} />
             </Grid>
           ))}
@@ -57,28 +78,36 @@ function App() {
             variant="h5"
             style={{ marginTop: '30px', marginBottom: '20px' }}
           >
-            De tema que quieres que creemos el Quiz
+            ¿De que tema quieres que creemos el Quiz?
           </Typography>
         </Grid>
         <Grid style={{ textAlign: 'center' }}>
           <WhiteTextField
-            label="¿De que quieres el Quiz?"
             id="filled-size-small"
             size="small"
+            value={inputCategory}
+            onChange={handleInputChange}
             style={{
               width: '50%',
               backgroundColor: '#424141',
-              color: '#424141',
             }}
           />
         </Grid>
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <Button onClick={handleClickOpen} variant="contained" color="primary">
+          <Button
+            onClick={handleOpenDialog}
+            variant="contained"
+            color="primary"
+          >
             ¡Comenzar!
           </Button>
         </div>
       </div>
-      <AlertDialog open={open} />
+      <AlertDialog
+        openDialog={dialogOpen}
+        handleClose={handleCloseDialog}
+        category={category}
+      />
     </ThemeProvider>
   );
 }
