@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { getQuestions } from "../services/questions.service";
+import { Quiz } from "../services/models/ResQuestions";
 
 interface State {
   options: Options;
   setOptions: (newOptions: State['options']) => void;
-  getQuestions:() => Promise<void>
+  getQuestions:() => Promise<Quiz[]>
 }
 
 export interface Options {
@@ -13,7 +14,7 @@ export interface Options {
   category: string;
 }
 
-const useQuestionsStore = create<State>((set) => {
+const useQuestionsStore = create<State>((set, get) => {
   return {
     options: {
       numQuestions: "",
@@ -26,8 +27,8 @@ const useQuestionsStore = create<State>((set) => {
       }));
     },
     getQuestions: async ()=> {
-       const resQuestions = await getQuestions();
-       return resQuestions;
+        const options = get().options;
+        return await getQuestions(options);
     }
   };
 });
