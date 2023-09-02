@@ -1,0 +1,110 @@
+{
+    "questions": [
+      {
+        "question": "¿Cuál es el nombre real de Iron Man?",
+        "options": [
+          "Tony Stark",
+          "Steve Rogers",
+          "Bruce Banner",
+          "Peter Parker"
+        ],
+        "correct_answer": "Tony Stark",
+        "programming_language": null
+      },
+      {
+        "question": "¿Qué gema del infinito controla el tiempo en el Universo Marvel?",
+        "options": [
+          "Space Stone",
+          "Reality Stone",
+          "Time Stone",
+          "Soul Stone"
+        ],
+        "correct_answer": "Time Stone",
+        "programming_language": null
+      },
+      {
+        "question": "¿Cuál es el nombre del planeta natal de Thor?",
+        "options": [
+          "Asgard",
+          "Midgard",
+          "Sakaar",
+          "Jotunheim"
+        ],
+        "correct_answer": "Asgard",
+        "programming_language": null
+      },
+      {
+        "question": "¿Quién es el enemigo principal de Spider-Man?",
+        "options": [
+          "Doctor Octopus",
+          "Green Goblin",
+          "Venom",
+          "Loki"
+        ],
+        "correct_answer": "Green Goblin",
+        "programming_language": null
+      },
+      {
+        "question": "Escribe un código en Python para imprimir 'Hello, world'.",
+        "options": [],
+        "correct_answer": "print('Hello, world')",
+        "programming_language": "Python"
+      },
+      {
+        "question": "Escribe un código en JavaScript para declarar una variable 'x' y asignarle el valor 10.",
+        "options": [],
+        "correct_answer": "var x = 10;",
+        "programming_language": "JavaScript"
+      },
+      {
+        "question": "¿Qué sustancia es necesaria para que el Capitán América tenga sus poderes?",
+        "options": [
+          "Vibranium",
+          "Adamantium",
+          "Strontium",
+          "Super Soldier Serum"
+        ],
+        "correct_answer": "Super Soldier Serum",
+        "programming_language": null
+      },
+      {
+        "question": "¿Cuál es el nombre real de Black Widow?",
+        "options": [
+          "Natasha Romanoff",
+          "Wanda Maximoff",
+          "Carol Danvers",
+          "Jessica Jones"
+        ],
+        "correct_answer": "Natasha Romanoff",
+        "programming_language": null
+      },
+      {
+        "question": "Escribe un código en C++ para calcular la suma de dos números.",
+        "options": [],
+        "correct_answer": "#include <iostream>\n\nint main() {\n    int a = 5;\n    int b = 3;\n    int sum = a + b;\n    std::cout << 'The sum is: ' << sum << std::endl;\n    return 0;\n}",
+        "programming_language": "C++"
+      },
+      {
+        "question": "¿Quién es el archienemigo de los X-Men?",
+        "options": [
+          "Loki",
+          "Red Skull",
+          "Magneto",
+          "Kingpin"
+        ],
+        "correct_answer": "Magneto",
+        "programming_language": null
+      },
+      {
+        "question": "¿Cuál es el nombre del equipo de superhéroes liderado por el Profesor Xavier?",
+        "options": [
+          "The Avengers",
+          "The Fantastic Four",
+          "The X-Men",
+          "The Defenders"
+        ],
+        "correct_answer": "The X-Men",
+        "programming_language": null
+      }
+    ]
+  }

@@ -13,7 +13,7 @@ const MostViewedCard: React.FC<MostViewedCardProps> = (props) => {
       <Card sx={{ backgroundColor: '#424141', color: 'white' }}>
         <CardActionArea>
           <CardContent>
-            <Typography variant="h4" component="div">
+            <Typography variant="h5" component="div">
               {props.title}
             </Typography>
           </CardContent>

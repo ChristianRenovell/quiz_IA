@@ -11,6 +11,8 @@ import { MOST_VIEWED } from '../shared/const/most-viewed';
 import MostViewedCard from '../components/mostViewedCard/MostViewedCard';
 import AlertDialog from '../components/AlertDialog/AlertDialog';
 import { theme } from '../them';
+import useQuestionsStore, { Options } from '../store/questionStorage';
+import { useNavigate } from 'react-router-dom';
 
 const WhiteTextField = styled(TextField)({
   '& .MuiInputBase-input': {
@@ -28,9 +30,13 @@ const WhiteTextField = styled(TextField)({
 });
 
 function Home() {
+  const navigate = useNavigate();
+
   const [dialogOpen, setDialogOpen] = useState(false);
   const [category, setCategory] = useState('');
   const [inputCategory, setInputValue] = useState('');
+
+  const setOptions = useQuestionsStore((state) => state.setOptions);
 
   const handleOpenDialog = () => {
     setCategory(inputCategory);
@@ -50,10 +56,14 @@ function Home() {
     difficulty: string,
     category: string
   ) => {
-    console.log(numQuestions);
-    console.log(difficulty);
-    console.log(category);
+    const options: Options = {
+      numQuestions: numQuestions,
+      difficulty: difficulty,
+      category: category,
+    };
+    setOptions(options);
     setDialogOpen(false);
+    navigate('/game');
   };
 
   const selectMostView = (category: string) => {
@@ -77,7 +87,7 @@ function Home() {
         <Grid
           container
           spacing={2}
-          style={{ marginTop: '50px', width: '80%', margin: '0 auto' }}
+          style={{ marginTop: '50px', width: '60%', margin: '0 auto' }}
         >
           {MOST_VIEWED.map((item) => (
             <Grid xs={4} onClick={() => selectMostView(item.value)}>
