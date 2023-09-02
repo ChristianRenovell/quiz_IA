@@ -15,6 +15,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "no-debugger": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "only-export-components": "off"
   },
 }

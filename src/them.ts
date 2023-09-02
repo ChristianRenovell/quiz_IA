@@ -16,3 +16,27 @@ export const theme = createTheme({
       },
     }
   });
+
+  export const themeSelect = createTheme({
+    components: {
+      MuiFormControl: {
+        styleOverrides: {
+          root: {
+            '& label.Mui-focused': {
+              color: '##000000 !important', 
+            },
+            '& .MuiInput-underline:after': {
+              borderBottomColor: '#000000 !important',
+            },
+          },
+        },
+      },
+      MuiInputLabel: {
+        styleOverrides: {
+          root: {
+            color: '#4#000000',
+          },
+        },
+      },
+    },
+  });
