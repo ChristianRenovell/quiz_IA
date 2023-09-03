@@ -5,10 +5,6 @@ import { useEffect } from 'react';
 import useQuestionsStore from '../../store/questionStorage';
 
 const FooterGame = () => {
-  const setCurrentQuestion = useQuestionsStore(
-    (state) => state.setCurrentQuestion
-  );
-
   const totalQuestionsStorage = useQuestionsStore(
     (state) => state.totalQuestions
   );
@@ -17,19 +13,30 @@ const FooterGame = () => {
     (state) => state.currentQuestion
   );
 
-  useEffect(() => {
-    setTimeout(() => {
-      setCurrentQuestion(2);
-    }, 2000);
-  }, []);
+  const backQuestionStorage = useQuestionsStore((state) => state.backQuestion);
+
+  const nextQuestionStorage = useQuestionsStore((state) => state.nextQuestion);
+
+  const backQuestion = () => {
+    backQuestionStorage();
+  };
+
+  const nextQuestion = () => {
+    nextQuestionStorage();
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <Grid sx={{ paddingLeft: 2, paddingBottom: 2 }}>
       <Typography variant="h4">
-        <ArrowBackIosIcon sx={{ cursor: 'pointer' }} />
-        <ArrowForwardIosIcon sx={{ cursor: 'pointer', marginRight: 2 }} />
+        <ArrowBackIosIcon onClick={backQuestion} sx={{ cursor: 'pointer' }} />
+        <ArrowForwardIosIcon
+          onClick={nextQuestion}
+          sx={{ cursor: 'pointer', marginRight: 2 }}
+        />
         <span>
-          {currentQuestionStorage}/{totalQuestionsStorage}
+          {currentQuestionStorage + 1}/{totalQuestionsStorage}
         </span>
       </Typography>
     </Grid>

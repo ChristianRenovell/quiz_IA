@@ -5,14 +5,11 @@ import {
   Card,
   CardContent,
   CardHeader,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
   Skeleton,
   Typography,
 } from '@mui/material';
 import FooterGame from '../components/footerGame.tsx/FooterGame';
+import QuestionComponent from '../components/question/Question';
 
 function Game() {
   const getQuestions = useQuestionsStore((state) => state.getQuestions);
@@ -37,7 +34,6 @@ function Game() {
 
   return (
     <div>
-      {' '}
       {questions.length > 0 ? (
         <Card
           sx={{
@@ -66,43 +62,11 @@ function Game() {
 
           <CardContent>
             {questions[currentQuestion].options.map((option, index) => (
-              <div key={index}>
-                <List>
-                  <ListItem disablePadding>
-                    <ListItemButton
-                      sx={
-                        { backgroundColor: '#3B3A3A' }
-                        //loading
-                        // ? {
-                        //     backgroundColor: '#ffffff',
-                        //     color: '#424141',
-                        //   }
-                        // : {
-                        //     backgroundColor: '#000000',
-                        //     color: '#424141',
-                        //   }
-                      }
-                    >
-                      {loading ? (
-                        <Skeleton
-                          sx={{
-                            width: '100%',
-                          }}
-                        />
-                      ) : (
-                        <ListItemText
-                          sx={{
-                            textAlign: 'center',
-                          }}
-                          primary={
-                            <Typography variant="h5">{option}</Typography>
-                          }
-                        />
-                      )}
-                    </ListItemButton>
-                  </ListItem>
-                </List>
-              </div>
+              <QuestionComponent
+                option={option}
+                index={index}
+                loading={loading}
+              />
             ))}
           </CardContent>
           <FooterGame></FooterGame>

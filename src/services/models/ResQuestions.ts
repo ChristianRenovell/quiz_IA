@@ -5,7 +5,8 @@ export interface Quiz {
 export interface Question {
     question: string;
     options: string[];
-    correct_answer: string;
-    code: string | null;
+    selected_answer?: number,
+    correct_answer: number;
+    code?: string;
   }
   
