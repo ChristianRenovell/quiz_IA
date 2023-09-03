@@ -94,17 +94,6 @@
       ],
       "correct_answer": "Magneto",
       "code": null
-    },
-    {
-      "question": "¿Cuál es el nombre del equipo de superhéroes liderado por el Profesor Xavier?",
-      "options": [
-        "The Avengers",
-        "The Fantastic Four",
-        "The X-Men",
-        "The Defenders"
-      ],
-      "correct_answer": "The X-Men",
-      "code": null
     }
   ]
 }

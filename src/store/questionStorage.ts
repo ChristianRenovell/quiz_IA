@@ -10,6 +10,7 @@ export interface Options {
 interface State {
   options: Options;
   currentQuestion:number; 
+  totalQuestions: number;
   setOptions: (newOptions: State['options']) => void;
   setCurrentQuestion: (currentQuestion: State['currentQuestion']) => void;
   getQuestions:() => Promise<Question[]>
@@ -23,6 +24,7 @@ const useQuestionsStore = create<State>((set, get) => {
       category: "",
     },
     currentQuestion: 0,
+    totalQuestions: 0,
     setOptions: (newOptions) => {
       set((state) => ({
         options: { ...state.options, ...newOptions },
@@ -33,9 +35,10 @@ const useQuestionsStore = create<State>((set, get) => {
     },
     getQuestions: async ()=> {
         const options = get().options;
-        console.log(options)
+       
         const response = await fetch('./src/services/mocks/resQuizz.json');
         const resJson = await response.json();
+        set({ totalQuestions: resJson.questions.length });
         return resJson.questions;
     }
   };

@@ -12,6 +12,7 @@ import {
   Skeleton,
   Typography,
 } from '@mui/material';
+import FooterGame from '../components/footerGame.tsx/FooterGame';
 
 function Game() {
   const getQuestions = useQuestionsStore((state) => state.getQuestions);
@@ -19,14 +20,12 @@ function Game() {
 
   const [loading, isLoading] = useState<boolean>(true);
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [currentQuestionIndex, setCurrentQuestions] = useState<number>(0);
 
   useEffect(() => {
     async function fetchQuestions() {
       try {
         const res = await getQuestions();
         setQuestions(res);
-        setCurrentQuestions(currentQuestion);
         isLoading(false);
       } catch (error) {
         console.error(error);
@@ -55,7 +54,7 @@ function Game() {
                 {loading ? (
                   <Skeleton />
                 ) : (
-                  <p>{questions[currentQuestionIndex].question}</p>
+                  <p>{questions[currentQuestion].question}</p>
                 )}
               </Typography>
             }
@@ -66,11 +65,24 @@ function Game() {
           />
 
           <CardContent>
-            {questions[currentQuestionIndex].options.map((option, index) => (
+            {questions[currentQuestion].options.map((option, index) => (
               <div key={index}>
                 <List>
                   <ListItem disablePadding>
-                    <ListItemButton>
+                    <ListItemButton
+                      sx={
+                        { backgroundColor: '#3B3A3A' }
+                        //loading
+                        // ? {
+                        //     backgroundColor: '#ffffff',
+                        //     color: '#424141',
+                        //   }
+                        // : {
+                        //     backgroundColor: '#000000',
+                        //     color: '#424141',
+                        //   }
+                      }
+                    >
                       {loading ? (
                         <Skeleton
                           sx={{
@@ -93,6 +105,7 @@ function Game() {
               </div>
             ))}
           </CardContent>
+          <FooterGame></FooterGame>
         </Card>
       ) : (
         <p>Cargando preguntas...</p>
