@@ -2,7 +2,7 @@ export interface Quiz {
   questions: Question[];
 }
 
-interface Question {
+export interface Question {
     question: string;
     options: string[];
     correct_answer: string;
