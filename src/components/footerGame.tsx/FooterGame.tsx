@@ -1,6 +1,6 @@
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { Grid, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import useQuestionsStore from '../../store/questionStorage';
 
@@ -12,6 +12,9 @@ const FooterGame = () => {
   const currentQuestionStorage = useQuestionsStore(
     (state) => state.currentQuestion
   );
+
+  const currentQuestion = useQuestionsStore((state) => state.currentQuestion);
+  const questions = useQuestionsStore((state) => state.questions);
 
   const backQuestionStorage = useQuestionsStore((state) => state.backQuestion);
 
@@ -38,6 +41,22 @@ const FooterGame = () => {
         <span>
           {currentQuestionStorage + 1}/{totalQuestionsStorage}
         </span>
+        <Button
+          sx={{
+            float: 'right',
+            marginRight: 2,
+            backgroundColor: '#ffffff',
+            color: '#000000',
+            '&:hover': {
+              backgroundColor: 'rgb(178, 178, 178)',
+            },
+          }}
+          disabled={!questions[currentQuestion].answered}
+          variant="contained"
+          onClick={nextQuestion}
+        >
+          Aceptar
+        </Button>
       </Typography>
     </Grid>
   );

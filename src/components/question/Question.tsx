@@ -6,9 +6,16 @@ import {
   Skeleton,
   Typography,
 } from '@mui/material';
+import useQuestionsStore from '../../store/questionStorage';
 
 const QuestionComponent = (props) => {
-  const checkCorrectAnwer = (index) => {};
+  const updateQuestion = useQuestionsStore((state) => state.updateQuestion);
+  const currentQuestion = useQuestionsStore((state) => state.currentQuestion);
+
+  const selectedAnswered = (index: string) => {
+    updateQuestion(currentQuestion, 'selected_answer', index);
+    updateQuestion(currentQuestion, 'answered', true);
+  };
 
   return (
     <div key={props.index}>
@@ -16,17 +23,22 @@ const QuestionComponent = (props) => {
         <ListItem disablePadding>
           <ListItemButton
             sx={
-              { backgroundColor: '#3B3A3A' }
-              //loading
-              // ? {
-              //     backgroundColor: '#ffffff',
-              //     color: '#424141',
-              //   }
-              // : {
-              //     backgroundColor: '#000000',
-              //     color: '#424141',
-              //   }
+              props.correct_answer === props.index && props.answered
+                ? {
+                    backgroundColor: '#ffffff',
+                    color: '#424141',
+                  }
+                : props.correct_answer !== props.index
+                ? props.selected_answer === props.index
+                  ? {
+                      backgroundColor: '#000000',
+                      color: '#ffffff',
+                    }
+                  : {}
+                : {}
             }
+            disabled={props.answered}
+            onClick={() => selectedAnswered(props.index)}
           >
             {props.loading ? (
               <Skeleton

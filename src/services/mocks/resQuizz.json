@@ -8,8 +8,9 @@
         "Bruce Banner",
         "Peter Parker"
       ],
-      "selected_answer": 0,
+      "selected_answer": null,
       "correct_answer": 0,
+      "answered": false,
       "code": null
     },
     {
@@ -22,6 +23,7 @@
       ],
       "selected_answer": null,
       "correct_answer": 2,
+      "answered": false,
       "code": null
     },
     {
@@ -34,6 +36,7 @@
       ],
       "selected_answer": null,
       "correct_answer": 0,
+      "answered": false,
       "code": null
     }
   ]

@@ -1,6 +1,7 @@
 import { create, SetState } from "zustand";
 import { Question } from "../services/models/ResQuestions";
 
+
 interface Options {
   numQuestions: string;
   difficulty: string;
@@ -9,12 +10,15 @@ interface Options {
 
 interface State {
   options: Options;
+  questions: Question[];
   currentQuestion: number;
   totalQuestions: number;
+  loading: boolean;
   setOptions: (newOptions: Options) => void;
   backQuestion: () => void;
   nextQuestion: () => void;
-  getQuestions: () => Promise<Question[]>;
+  updateQuestion: (índice: number, nombrePropiedad: string, valorPropiedad: string | boolean)=> void;
+  getQuestions: () => void;
 }
 
 const useQuestionsStore = create<State>((set: SetState<State>) => ({
@@ -23,8 +27,10 @@ const useQuestionsStore = create<State>((set: SetState<State>) => ({
     difficulty: "",
     category: "",
   },
+  questions: [],
   currentQuestion: 0,
   totalQuestions: 0,
+  loading: true,
   setOptions: (newOptions: Options) =>
     set((state) => ({
       options: { ...state.options, ...newOptions },
@@ -39,6 +45,16 @@ const useQuestionsStore = create<State>((set: SetState<State>) => ({
       currentQuestion: Math.min(state.currentQuestion + 1, state.totalQuestions - 1),
     }));
   },
+  updateQuestion: (índice: number, nombrePropiedad: string, valorPropiedad: string | boolean) => {
+    set((state) => {
+      const preguntasActualizadas = [...state.questions];
+      if (índice >= 0 && índice < preguntasActualizadas.length) {
+        preguntasActualizadas[índice][nombrePropiedad] = valorPropiedad;
+      }
+      console.log(preguntasActualizadas)
+      return { questions: preguntasActualizadas };
+    });
+  },
   getQuestions: async () => {
     const options = useQuestionsStore.getState().options;
 
@@ -47,8 +63,9 @@ const useQuestionsStore = create<State>((set: SetState<State>) => ({
       const resJson = await response.json();
       set({
         totalQuestions: resJson.questions.length,
+        questions:resJson.questions,
+        loading: false
       });
-      return resJson.questions;
     } catch (error) {
       console.error("Error fetching questions:", error);
       return [];

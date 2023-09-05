@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useQuestionsStore from '../store/questionStorage';
-import { Question } from '../services/models/ResQuestions';
 import {
   Card,
   CardContent,
@@ -14,22 +13,11 @@ import QuestionComponent from '../components/question/Question';
 function Game() {
   const getQuestions = useQuestionsStore((state) => state.getQuestions);
   const currentQuestion = useQuestionsStore((state) => state.currentQuestion);
-
-  const [loading, isLoading] = useState<boolean>(true);
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const questions = useQuestionsStore((state) => state.questions);
+  const loading = useQuestionsStore((state) => state.loading);
 
   useEffect(() => {
-    async function fetchQuestions() {
-      try {
-        const res = await getQuestions();
-        setQuestions(res);
-        isLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchQuestions();
+    getQuestions();
   }, []);
 
   return (
@@ -65,6 +53,9 @@ function Game() {
               <QuestionComponent
                 option={option}
                 index={index}
+                correct_answer={questions[currentQuestion].correct_answer}
+                answered={questions[currentQuestion].answered}
+                selected_answer={questions[currentQuestion].selected_answer}
                 loading={loading}
               />
             ))}
