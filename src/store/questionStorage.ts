@@ -14,6 +14,7 @@ interface State {
   currentQuestion: number;
   totalQuestions: number;
   loading: boolean;
+  quizCompleted: boolean;
   setOptions: (newOptions: Options) => void;
   backQuestion: () => void;
   nextQuestion: () => void;
@@ -31,6 +32,7 @@ const useQuestionsStore = create<State>((set: SetState<State>) => ({
   currentQuestion: 0,
   totalQuestions: 0,
   loading: true,
+  quizCompleted: false,
   setOptions: (newOptions: Options) =>
     set((state) => ({
       options: { ...state.options, ...newOptions },
@@ -45,13 +47,19 @@ const useQuestionsStore = create<State>((set: SetState<State>) => ({
       currentQuestion: Math.min(state.currentQuestion + 1, state.totalQuestions - 1),
     }));
   },
+  getHists: () => {
+    set((state) => {
+      return state
+    });
+  },
   updateQuestion: (índice: number, nombrePropiedad: string, valorPropiedad: string | boolean) => {
     set((state) => {
-      const preguntasActualizadas = [...state.questions];
+      const preguntasActualizadas: Question[] = [...state.questions];
       if (índice >= 0 && índice < preguntasActualizadas.length) {
         preguntasActualizadas[índice][nombrePropiedad] = valorPropiedad;
       }
-      console.log(preguntasActualizadas)
+      
+      state.quizCompleted = state.questions.findIndex((element) => element.selected_answer === null) === -1;
       return { questions: preguntasActualizadas };
     });
   },

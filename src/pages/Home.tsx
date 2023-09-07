@@ -111,7 +111,7 @@ function Home() {
             value={inputCategory}
             onChange={handleInputChange}
             style={{
-              width: '50%',
+              width: '20%',
               backgroundColor: '#424141',
             }}
           />
