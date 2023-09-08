@@ -20,9 +20,11 @@ interface State {
   nextQuestion: () => void;
   updateQuestion: (índice: number, nombrePropiedad: string, valorPropiedad: string | boolean)=> void;
   getQuestions: () => void;
+  getResultQuiz: () => number;
+  resetState: () => number;
 }
 
-const useQuestionsStore = create<State>((set: SetState<State>) => ({
+const useQuestionsStore = create<State>((set, get) => ({
   options: {
     numQuestions: "",
     difficulty: "",
@@ -78,6 +80,23 @@ const useQuestionsStore = create<State>((set: SetState<State>) => ({
       console.error("Error fetching questions:", error);
       return [];
     }
+  },
+  getResultQuiz: () => {
+    return get().questions.filter(element => element.correct_answer === element.selected_answer).length; 
+  },
+  resetState: () => {
+    set({
+      options: {
+        numQuestions: "",
+        difficulty: "",
+        category: "",
+      },
+      questions: [],
+      currentQuestion: 0,
+      totalQuestions: 0,
+      loading: true,
+      quizCompleted: false,
+    });
   },
 }));
 

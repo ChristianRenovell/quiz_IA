@@ -6,7 +6,7 @@ import {
   Typography,
   styled,
 } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MOST_VIEWED } from '../shared/const/most-viewed';
 import MostViewedCard from '../components/mostViewedCard/MostViewedCard';
 import AlertDialog from '../components/AlertDialog/AlertDialog';
@@ -37,6 +37,11 @@ function Home() {
   const [inputCategory, setInputValue] = useState('');
 
   const setOptions = useQuestionsStore((state) => state.setOptions);
+  const resetState = useQuestionsStore((state) => state.resetState);
+
+  useEffect(() => {
+    resetState();
+  }, []);
 
   const handleOpenDialog = () => {
     setCategory(inputCategory);
