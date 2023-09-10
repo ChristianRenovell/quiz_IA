@@ -17,7 +17,6 @@ function Summary() {
   useEffect(() => {
     setRightAnswers(getResultQuiz());
   }, []);
-
   const goHome = () => {
     navigate('/');
   };

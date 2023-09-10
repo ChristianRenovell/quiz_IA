@@ -1,21 +1,26 @@
 import { useEffect } from 'react';
 import useQuestionsStore from '../store/questionStorage';
 import {
+  Box,
   Card,
   CardContent,
   CardHeader,
+  LinearProgress,
   Skeleton,
   Typography,
 } from '@mui/material';
 import FooterGame from '../components/footerGame.tsx/FooterGame';
 import QuestionComponent from '../components/question/Question';
+import '../index.css';
 
 function Game() {
-  const getQuestions = useQuestionsStore((state) => state.getQuestions);
-  const currentQuestion = useQuestionsStore((state) => state.currentQuestion);
-  const questions = useQuestionsStore((state) => state.questions);
-  const loading = useQuestionsStore((state) => state.loading);
-
+  const { getQuestions, currentQuestion, questions, loading } =
+    useQuestionsStore((state) => ({
+      getQuestions: state.getQuestions,
+      currentQuestion: state.currentQuestion,
+      questions: state.questions,
+      loading: state.loading,
+    }));
   useEffect(() => {
     getQuestions();
   }, []);
@@ -51,6 +56,7 @@ function Game() {
           <CardContent>
             {questions[currentQuestion].options.map((option, index) => (
               <QuestionComponent
+                key={index}
                 option={option}
                 index={index}
                 correct_answer={questions[currentQuestion].correct_answer}
@@ -63,7 +69,24 @@ function Game() {
           <FooterGame></FooterGame>
         </Card>
       ) : (
-        <p>Cargando preguntas...</p>
+        <Box sx={{ width: '100%' }}>
+          <LinearProgress
+            sx={{
+              backgroundColor: 'white',
+              '& .MuiLinearProgress-bar': {
+                backgroundColor: '#424141',
+              },
+            }}
+          />
+          <Typography
+            className="blinking"
+            align="center"
+            variant="h5"
+            sx={{ mt: 5 }}
+          >
+            Estamos preparando el quiz!
+          </Typography>
+        </Box>
       )}
     </div>
   );

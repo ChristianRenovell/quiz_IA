@@ -1,7 +1,8 @@
-import { create, SetState } from 'zustand';
+import { create } from 'zustand';
 import { Question } from '../services/models/ResQuestions';
+import { environment } from '../environment.';
 
-interface Options {
+export interface Options {
   numQuestions: string;
   difficulty: string;
   category: string;
@@ -24,7 +25,7 @@ interface State {
   ) => void;
   getQuestions: () => void;
   getResultQuiz: () => number;
-  resetState: () => number;
+  resetState: () => void;
 }
 
 const useQuestionsStore = create<State>((set, get) => ({
@@ -61,21 +62,21 @@ const useQuestionsStore = create<State>((set, get) => ({
     });
   },
   updateQuestion: (
-    índice: number,
-    nombrePropiedad: string,
-    valorPropiedad: string | boolean
+    index: number,
+    newProperty: string,
+    valueProperty: string | boolean
   ) => {
     set((state) => {
-      const preguntasActualizadas: Question[] = [...state.questions];
-      if (índice >= 0 && índice < preguntasActualizadas.length) {
-        preguntasActualizadas[índice][nombrePropiedad] = valorPropiedad;
+      const updateQuestion: Question[] = [...state.questions];
+      if (index >= 0 && index < updateQuestion.length) {
+        updateQuestion[index][newProperty] = valueProperty;
       }
 
       state.quizCompleted =
         state.questions.findIndex(
           (element) => element.selected_answer === null
         ) === -1;
-      return { questions: preguntasActualizadas };
+      return { questions: updateQuestion };
     });
   },
   getQuestions: async () => {
@@ -95,13 +96,9 @@ const useQuestionsStore = create<State>((set, get) => ({
       body: JSON.stringify(body),
     };
     try {
-      const response = await fetch(
-        'http://localhost:3000/quiz/completion',
-        opciones
-      );
+      const response = await fetch(environment.apiquiz, opciones);
       const resJson = await response.json();
       const questionsJsonRes = JSON.parse(resJson[0].message.content);
-
       set({
         totalQuestions: questionsJsonRes.questions.length,
         questions: questionsJsonRes.questions,

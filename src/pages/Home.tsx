@@ -25,7 +25,7 @@ const WhiteTextField = styled(TextField)({
     color: '#ffffff',
   },
   '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
-    'border-color': '#ffffff',
+    borderColor: '#ffffff',
   },
 });
 
@@ -38,7 +38,6 @@ function Home() {
 
   const setOptions = useQuestionsStore((state) => state.setOptions);
   const resetState = useQuestionsStore((state) => state.resetState);
-
   useEffect(() => {
     resetState();
   }, []);
@@ -94,8 +93,13 @@ function Home() {
           spacing={2}
           style={{ marginTop: '50px', width: '60%', margin: '0 auto' }}
         >
-          {MOST_VIEWED.map((item) => (
-            <Grid xs={4} onClick={() => selectMostView(item.value)}>
+          {MOST_VIEWED.map((item, index) => (
+            <Grid
+              key={index}
+              item
+              xs={4}
+              onClick={() => selectMostView(item.value)}
+            >
               <MostViewedCard title={item.value} />
             </Grid>
           ))}
