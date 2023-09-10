@@ -17,8 +17,13 @@ function Summary() {
   useEffect(() => {
     setRightAnswers(getResultQuiz());
   }, []);
-  const goHome = () => {
+
+  const goNewQuiz = () => {
     navigate('/');
+  };
+
+  const goRepeatQuiz = () => {
+    navigate('/game/repeat');
   };
 
   return (
@@ -83,6 +88,7 @@ function Summary() {
         <Grid mt={3}>
           <Card>
             <Button
+              onClick={goRepeatQuiz}
               sx={{
                 float: 'right',
                 marginTop: 2,
@@ -99,7 +105,7 @@ function Summary() {
               Repetir Quiz
             </Button>
             <Button
-              onClick={goHome}
+              onClick={goNewQuiz}
               sx={{
                 float: 'right',
                 marginTop: 2,

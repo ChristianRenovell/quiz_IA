@@ -13,30 +13,41 @@ import {
 import FooterGame from '../components/footerGame.tsx/FooterGame';
 import QuestionComponent from '../components/question/Question';
 import '../index.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import { REPEAT } from '../shared/const/urlParams';
 
 function Game() {
-  const { getQuestions, currentQuestion, questions, loading } =
+  const navigate = useNavigate();
+  const { mode } = useParams();
+  const { getQuestions, repeatQuiz, currentQuestion, questions, loading } =
     useQuestionsStore((state) => ({
       getQuestions: state.getQuestions,
+      repeatQuiz: state.repeatQuiz,
       currentQuestion: state.currentQuestion,
       questions: state.questions,
       loading: state.loading,
     }));
   useEffect(() => {
-    getQuestions();
+    if (mode === REPEAT) {
+      repeatQuiz();
+    } else {
+      getQuestions().then((result) => {
+        if (!result) {
+          navigate('/error');
+        }
+      });
+    }
   }, []);
 
   return (
     <Grid container justifyContent="center">
       <Grid item xs={12} sm={10} md={8} lg={6}>
-        {' '}
-        {/* Ajustar el ancho según tus necesidades */}
         {questions.length > 0 ? (
           <Card
             sx={{
               width: '100%',
               margin: '0 auto',
-              marginTop: '70px',
+              marginTop: '30px',
               backgroundColor: '#424141',
               color: '#ffffff',
             }}
@@ -74,6 +85,14 @@ function Game() {
           </Card>
         ) : (
           <Box sx={{ width: '100%' }}>
+            <Typography
+              className="blinking"
+              align="center"
+              variant="h5"
+              sx={{ mt: 5, mb: 3 }}
+            >
+              Estamos preparando el quiz!
+            </Typography>
             <LinearProgress
               sx={{
                 backgroundColor: 'white',
@@ -82,14 +101,6 @@ function Game() {
                 },
               }}
             />
-            <Typography
-              className="blinking"
-              align="center"
-              variant="h5"
-              sx={{ mt: 5 }}
-            >
-              Estamos preparando el quiz!
-            </Typography>
           </Box>
         )}
       </Grid>

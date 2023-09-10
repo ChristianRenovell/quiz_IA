@@ -3,7 +3,6 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  Skeleton,
   Typography,
 } from '@mui/material';
 import useQuestionsStore from '../../store/questionStorage';
@@ -41,20 +40,12 @@ const QuestionComponent = (props) => {
             disabled={props.answered}
             onClick={() => selectedAnswered(props.index)}
           >
-            {props.loading ? (
-              <Skeleton
-                sx={{
-                  width: '100%',
-                }}
-              />
-            ) : (
-              <ListItemText
-                sx={{
-                  textAlign: 'center',
-                }}
-                primary={<Typography variant="h5">{props.option}</Typography>}
-              />
-            )}
+            <ListItemText
+              sx={{
+                textAlign: 'center',
+              }}
+              primary={<Typography variant="h5">{props.option}</Typography>}
+            />
           </ListItemButton>
         </ListItem>
       </List>

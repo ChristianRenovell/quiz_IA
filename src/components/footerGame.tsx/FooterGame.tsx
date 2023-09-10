@@ -33,7 +33,7 @@ const FooterGame = () => {
   };
 
   const goSummary = () => {
-    navigate('/summary');
+    navigate('/Summary');
   };
 
   return (

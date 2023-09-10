@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { Question } from '../services/models/ResQuestions';
 import { environment } from '../environment.';
+import { useNavigate } from 'react-router-dom';
 
 export interface Options {
   numQuestions: string;
@@ -23,9 +24,10 @@ interface State {
     nombrePropiedad: string,
     valorPropiedad: string | boolean
   ) => void;
-  getQuestions: () => void;
+  getQuestions: () => Promise<boolean>;
   getResultQuiz: () => number;
   resetState: () => void;
+  repeatQuiz: () => void;
 }
 
 const useQuestionsStore = create<State>((set, get) => ({
@@ -105,12 +107,12 @@ const useQuestionsStore = create<State>((set, get) => ({
           questions: questionsJsonRes.questions,
           loading: false,
         });
+        return true;
       } else {
-        console.log('error');
+        return false;
       }
     } catch (error) {
-      console.error('Error fetching questions:', error);
-      return [];
+      return false;
     }
   },
   getResultQuiz: () => {
@@ -128,6 +130,13 @@ const useQuestionsStore = create<State>((set, get) => ({
       questions: [],
       currentQuestion: 0,
       totalQuestions: 0,
+      loading: true,
+      quizCompleted: false,
+    });
+  },
+  repeatQuiz: () => {
+    set({
+      currentQuestion: 0,
       loading: true,
       quizCompleted: false,
     });
