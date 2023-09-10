@@ -99,11 +99,15 @@ const useQuestionsStore = create<State>((set, get) => ({
       const response = await fetch(environment.apiquiz, opciones);
       const resJson = await response.json();
       const questionsJsonRes = JSON.parse(resJson[0].message.content);
-      set({
-        totalQuestions: questionsJsonRes.questions.length,
-        questions: questionsJsonRes.questions,
-        loading: false,
-      });
+      if (questionsJsonRes.questions.length > 0) {
+        set({
+          totalQuestions: questionsJsonRes.questions.length,
+          questions: questionsJsonRes.questions,
+          loading: false,
+        });
+      } else {
+        console.log('error');
+      }
     } catch (error) {
       console.error('Error fetching questions:', error);
       return [];

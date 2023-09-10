@@ -27,6 +27,11 @@ const WhiteTextField = styled(TextField)({
   '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
     borderColor: '#ffffff',
   },
+
+  width: '60%',
+  [theme.breakpoints.up('sm')]: {
+    width: '35%',
+  },
 });
 
 function Home() {
@@ -97,7 +102,9 @@ function Home() {
             <Grid
               key={index}
               item
-              xs={4}
+              xs={12}
+              sm={6}
+              md={4}
               onClick={() => selectMostView(item.value)}
             >
               <MostViewedCard title={item.value} />
@@ -110,7 +117,7 @@ function Home() {
             variant="h5"
             style={{ marginTop: '30px', marginBottom: '20px' }}
           >
-            ¿De que tema quieres que creemos el Quiz?
+            ¿De qué tema quieres que creemos el Quiz?
           </Typography>
         </Grid>
         <Grid style={{ textAlign: 'center' }}>
@@ -120,7 +127,6 @@ function Home() {
             value={inputCategory}
             onChange={handleInputChange}
             style={{
-              width: '20%',
               backgroundColor: '#424141',
             }}
           />

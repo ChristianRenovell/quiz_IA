@@ -20,7 +20,7 @@ const QuestionComponent = (props) => {
   return (
     <div key={props.index}>
       <List>
-        <ListItem disablePadding>
+        <ListItem disablePadding sx={{ border: '1px solid #ffffff' }}>
           <ListItemButton
             sx={
               props.correct_answer === props.index && props.answered

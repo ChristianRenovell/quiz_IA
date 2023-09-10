@@ -22,20 +22,19 @@ function Summary() {
   };
 
   return (
-    <Grid container justifyContent="center">
-      <Grid mt={6} style={{ width: '70%' }}>
+    <Grid container justifyContent="center" mt={4}>
+      <Grid item xs={12} sm={10} md={8} lg={6}>
         <Card>
           <Typography align="center" variant="h4" p={3}>
             Resumen
           </Typography>
         </Card>
-        <Grid sx={{ display: 'flex' }}>
-          <Grid item xs={4}>
+        <Grid container spacing={2} mt={1}>
+          <Grid item xs={12} sm={4}>
             <Card
               sx={{
                 backgroundColor: '#424141',
                 color: '#ffffff',
-                marginTop: 2,
                 marginRight: 1,
               }}
             >
@@ -47,30 +46,28 @@ function Summary() {
               </Typography>
             </Card>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <Card
               sx={{
                 backgroundColor: '#424141',
                 color: '#ffffff',
-                marginTop: 2,
                 marginRight: 1,
                 marginLeft: 1,
               }}
             >
               <Typography align="center" variant="h5" pt={2}>
-                Porcentage
+                Porcentaje
               </Typography>
               <Typography align="center" variant="h4" pl={3} pr={3} pb={3}>
                 {Math.floor((rightAnswers / totalQuestions) * 100)}%
               </Typography>
             </Card>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <Card
               sx={{
                 backgroundColor: '#424141',
                 color: '#ffffff',
-                marginTop: 2,
                 marginLeft: 1,
               }}
             >
@@ -83,7 +80,7 @@ function Summary() {
             </Card>
           </Grid>
         </Grid>
-        <Grid mt={2}>
+        <Grid mt={3}>
           <Card>
             <Button
               sx={{
@@ -120,7 +117,9 @@ function Summary() {
             </Button>
           </Card>
         </Grid>
-        <Grid mt={5}>baenner</Grid>
+        <Grid container justifyContent="center" mt={5}>
+          {/* Aquí puedes colocar tu banner */}
+        </Grid>
       </Grid>
     </Grid>
   );
