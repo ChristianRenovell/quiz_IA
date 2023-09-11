@@ -8,14 +8,17 @@ import { useNavigate } from 'react-router-dom';
 
 function Summary() {
   const [rightAnswers, setRightAnswers] = useState(0);
+  const [timer, setTimer] = useState('');
 
   const navigate = useNavigate();
 
   const totalQuestions = useQuestionsStore((state) => state.totalQuestions);
   const getResultQuiz = useQuestionsStore((state) => state.getResultQuiz);
+  const getTimer = useQuestionsStore((state) => state.getTimer);
 
   useEffect(() => {
     setRightAnswers(getResultQuiz());
+    setTimer(getTimer());
   }, []);
 
   const goNewQuiz = () => {
@@ -81,7 +84,7 @@ function Summary() {
                 Tiempo
               </Typography>
               <Typography align="center" variant="h4" pl={3} pr={3} pb={3}>
-                {rightAnswers} / {totalQuestions}
+                {timer}
               </Typography>
             </Card>
           </Grid>

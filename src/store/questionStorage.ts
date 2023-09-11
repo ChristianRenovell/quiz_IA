@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { Question } from '../services/models/ResQuestions';
 import { environment } from '../environment.';
-import { useNavigate } from 'react-router-dom';
+import moment, { Moment } from 'moment';
 
 export interface Options {
   numQuestions: string;
@@ -28,6 +28,8 @@ interface State {
   getResultQuiz: () => number;
   resetState: () => void;
   repeatQuiz: () => void;
+  getTimer: () => string;
+  startTime: Moment | null;
 }
 
 const useQuestionsStore = create<State>((set, get) => ({
@@ -41,6 +43,7 @@ const useQuestionsStore = create<State>((set, get) => ({
   totalQuestions: 0,
   loading: true,
   quizCompleted: false,
+  startTime: null,
   setOptions: (newOptions: Options) =>
     set((state) => ({
       options: { ...state.options, ...newOptions },
@@ -85,9 +88,7 @@ const useQuestionsStore = create<State>((set, get) => ({
     const options = useQuestionsStore.getState().options;
 
     const body = {
-      model: 'gpt-3.5-turbo',
       prompt: JSON.stringify(options),
-      max_tokens: 50,
     };
 
     const opciones = {
@@ -106,6 +107,7 @@ const useQuestionsStore = create<State>((set, get) => ({
           totalQuestions: questionsJsonRes.questions.length,
           questions: questionsJsonRes.questions,
           loading: false,
+          startTime: moment(),
         });
         return true;
       } else {
@@ -140,6 +142,11 @@ const useQuestionsStore = create<State>((set, get) => ({
       loading: true,
       quizCompleted: false,
     });
+  },
+  getTimer: () => {
+    const endTime = moment();
+    const result = endTime.diff(useQuestionsStore.getState().startTime);
+    return moment(result).format('MM:SS');
   },
 }));
 

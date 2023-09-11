@@ -32,7 +32,7 @@ const QuestionComponent = (props) => {
                   ? {
                       backgroundColor: '#000000',
                       color: '#ffffff',
-                      border: 'solid 1px #ffffff',
+                      border: 'solid 1px #4b4b4b',
                     }
                   : {}
                 : {}
