@@ -14,7 +14,7 @@ import MostViewedCard from '../components/mostViewedCard/MostViewedCard';
 import AlertDialog from '../components/AlertDialog/AlertDialog';
 import { theme } from '../them';
 import useQuestionsStore, { Options } from '../store/questionStorage';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ERROR } from '../shared/const/urlParams';
 import React from 'react';
 
@@ -39,20 +39,7 @@ const WhiteTextField = styled(TextField)({
 });
 
 function Home() {
-  const [open, setOpen] = React.useState(false);
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
   const navigate = useNavigate();
-  const { error } = useParams();
-
   const [dialogOpen, setDialogOpen] = useState(false);
   const [category, setCategory] = useState('');
   const [inputCategory, setInputValue] = useState('');
@@ -61,9 +48,6 @@ function Home() {
   const resetState = useQuestionsStore((state) => state.resetState);
   useEffect(() => {
     resetState();
-    if (error === ERROR) {
-      setOpen(true);
-    }
   }, []);
 
   const handleOpenDialog = () => {
@@ -166,16 +150,6 @@ function Home() {
         handleAcept={handleAceptDialog}
         category={category}
       />
-      <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      >
-        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-          Ha ocurrido un error inesperado, intentalo de nuevo.
-        </Alert>
-      </Snackbar>
     </ThemeProvider>
   );
 }

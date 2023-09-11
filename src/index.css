@@ -21,3 +21,7 @@
   animation: blinking 2.5s infinite;
 }
 
+.MuiAlert-icon {
+  color: rgb(0, 0, 0)!important;
+}
+

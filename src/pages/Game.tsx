@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import useQuestionsStore from '../store/questionStorage';
 import {
+  Alert,
   Box,
   Card,
   CardContent,
@@ -10,15 +11,17 @@ import {
   Skeleton,
   Typography,
 } from '@mui/material';
-import FooterGame from '../components/footerGame.tsx/FooterGame';
+import FooterGame from '../components/footerGame/FooterGame';
 import QuestionComponent from '../components/question/Question';
 import '../index.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { REPEAT } from '../shared/const/urlParams';
+import useSnackBarStore from '../store/snackBarStorage';
 
 function Game() {
   const navigate = useNavigate();
   const { mode } = useParams();
+
   const { getQuestions, repeatQuiz, currentQuestion, questions, loading } =
     useQuestionsStore((state) => ({
       getQuestions: state.getQuestions,
@@ -27,13 +30,20 @@ function Game() {
       questions: state.questions,
       loading: state.loading,
     }));
+
+  const showSnackBar = useSnackBarStore((state) => state.showSnackBar);
+
   useEffect(() => {
     if (mode === REPEAT) {
       repeatQuiz();
     } else {
       getQuestions().then((result) => {
         if (!result) {
-          navigate('/error');
+          showSnackBar(
+            'Hemos tenido un problema inesperado, disculpe las molestias',
+            'error'
+          );
+          navigate('/');
         }
       });
     }

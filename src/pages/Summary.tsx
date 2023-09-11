@@ -23,7 +23,8 @@ function Summary() {
   };
 
   const goRepeatQuiz = () => {
-    navigate('/game/repeat');
+    const dataToSend = { mode: 'repeat' };
+    navigate('/game', { state: dataToSend });
   };
 
   return (
