@@ -9,6 +9,13 @@ export interface Options {
   category: string;
 }
 
+type RepeatQuizUpdate = {
+  currentQuestion: number;
+  loading: boolean;
+  quizCompleted: boolean;
+  questions: Question[];
+};
+
 interface State {
   options: Options;
   questions: Question[];
@@ -137,10 +144,19 @@ const useQuestionsStore = create<State>((set, get) => ({
     });
   },
   repeatQuiz: () => {
-    set({
-      currentQuestion: 0,
-      loading: true,
-      quizCompleted: false,
+    set((state: State) => {
+      const updatedState: RepeatQuizUpdate = {
+        currentQuestion: 0,
+        loading: false,
+        quizCompleted: false,
+        questions: state.questions.map((question) => ({
+          ...question,
+          selected_answer: null,
+          answered: false,
+        })),
+      };
+
+      return updatedState;
     });
   },
   getTimer: () => {

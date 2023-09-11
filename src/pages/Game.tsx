@@ -14,13 +14,13 @@ import {
 import FooterGame from '../components/footerGame/FooterGame';
 import QuestionComponent from '../components/question/Question';
 import '../index.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { REPEAT } from '../shared/const/urlParams';
 import useSnackBarStore from '../store/snackBarStorage';
 
 function Game() {
   const navigate = useNavigate();
-  const { mode } = useParams();
+  const location = useLocation();
 
   const { getQuestions, repeatQuiz, currentQuestion, questions, loading } =
     useQuestionsStore((state) => ({
@@ -34,7 +34,7 @@ function Game() {
   const showSnackBar = useSnackBarStore((state) => state.showSnackBar);
 
   useEffect(() => {
-    if (mode === REPEAT) {
+    if (location.state !== undefined && location.state?.mode === REPEAT) {
       repeatQuiz();
     } else {
       getQuestions().then((result) => {
