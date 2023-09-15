@@ -94,7 +94,7 @@ function Home() {
           variant="h5"
           style={{ marginTop: '20px', marginBottom: '20px' }}
         >
-          Estos son algunas las categorías más utilizadas
+          Estas son algunas de las categorías más utilizadas
         </Typography>
         <Grid
           container
@@ -120,7 +120,7 @@ function Home() {
             variant="h5"
             style={{ marginTop: '30px', marginBottom: '20px' }}
           >
-            ¿De qué tema quieres que creemos el Quiz?
+            ¿Sobre qué tema quieres que creemos el quiz?
           </Typography>
         </Grid>
         <Grid style={{ textAlign: 'center' }}>

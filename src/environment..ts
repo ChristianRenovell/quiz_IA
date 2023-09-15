@@ -1,3 +1,3 @@
 export const environment = {
-  apiquiz: 'http://localhost:3000/quiz/completion',
+  apiquiz: 'https://api-openia-dqs1.onrender.com',
 };

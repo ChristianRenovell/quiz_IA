@@ -106,7 +106,10 @@ const useQuestionsStore = create<State>((set, get) => ({
       body: JSON.stringify(body),
     };
     try {
-      const response = await fetch(environment.apiquiz, opciones);
+      const response = await fetch(
+        environment.apiquiz + '/quiz/completion',
+        opciones
+      );
       const resJson = await response.json();
       const questionsJsonRes = JSON.parse(resJson[0].message.content);
       if (questionsJsonRes.questions.length > 0) {
