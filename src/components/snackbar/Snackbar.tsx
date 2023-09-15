@@ -1,7 +1,7 @@
 import { Alert, Snackbar } from '@mui/material';
 import useSnackBarStore from '../../store/snackBarStorage';
 
-const SnackbarComponent = (props) => {
+const SnackbarComponent = () => {
   const {
     message,
     severity,

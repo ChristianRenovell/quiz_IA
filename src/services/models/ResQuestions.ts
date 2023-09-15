@@ -3,11 +3,10 @@ export interface Quiz {
 }
 
 export interface Question {
-    question: string;
-    options: string[];
-    selected_answer?: number,
-    answered:boolean,
-    correct_answer: number;
-    code?: string;
-  }
-  
+  question: string;
+  options: string[];
+  selected_answer?: number | null | undefined;
+  answered: boolean;
+  correct_answer: number;
+  code?: string;
+}

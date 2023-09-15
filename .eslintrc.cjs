@@ -16,6 +16,7 @@ module.exports = {
     ],
     "no-debugger": "off",
     "no-unused-vars": "off",
-    "only-export-components": "off"
+    "only-export-components": "off",
+    "no-explicit-any": "off"
   },
 }

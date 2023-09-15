@@ -29,7 +29,7 @@ interface State {
   updateQuestion: (
     índice: number,
     nombrePropiedad: string,
-    valorPropiedad: string | boolean
+    valorPropiedad: string | boolean | number
   ) => void;
   getQuestions: () => Promise<boolean>;
   getResultQuiz: () => number;
@@ -76,10 +76,11 @@ const useQuestionsStore = create<State>((set, get) => ({
   updateQuestion: (
     index: number,
     newProperty: string,
-    valueProperty: string | boolean
+    valueProperty: string | boolean | number
   ) => {
     set((state) => {
-      const updateQuestion: Question[] = [...state.questions];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const updateQuestion: Question[] | any = [...state.questions];
       if (index >= 0 && index < updateQuestion.length) {
         updateQuestion[index][newProperty] = valueProperty;
       }

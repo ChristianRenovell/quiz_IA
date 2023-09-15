@@ -1,8 +1,6 @@
 import {
-  Alert,
   Button,
   Grid,
-  Snackbar,
   TextField,
   ThemeProvider,
   Typography,
@@ -14,9 +12,7 @@ import MostViewedCard from '../components/mostViewedCard/MostViewedCard';
 import AlertDialog from '../components/AlertDialog/AlertDialog';
 import { theme } from '../them';
 import useQuestionsStore, { Options } from '../store/questionStorage';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { ERROR } from '../shared/const/urlParams';
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const WhiteTextField = styled(TextField)({
   '& .MuiInputBase-input': {

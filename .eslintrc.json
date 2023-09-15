@@ -22,6 +22,7 @@
         "eslint-disable no-debugger": "off",
         "eslint-disable no-unused-vars": "off",
         "no-debugger": "off",
-        "only-export-components": "off"
+        "only-export-components": "off",
+        "no-explicit-any": "off"
     }
 }

@@ -7,11 +7,21 @@ import {
 } from '@mui/material';
 import useQuestionsStore from '../../store/questionStorage';
 
-const QuestionComponent = (props) => {
+interface QuestionComponentProps {
+  key: number;
+  option: string;
+  index: number;
+  correct_answer: number;
+  answered: boolean;
+  selected_answer: number | null | undefined;
+  loading: boolean;
+}
+
+const QuestionComponent: React.FC<QuestionComponentProps> = (props) => {
   const updateQuestion = useQuestionsStore((state) => state.updateQuestion);
   const currentQuestion = useQuestionsStore((state) => state.currentQuestion);
 
-  const selectedAnswered = (index: string) => {
+  const selectedAnswered = (index: number) => {
     updateQuestion(currentQuestion, 'selected_answer', index);
     updateQuestion(currentQuestion, 'answered', true);
   };

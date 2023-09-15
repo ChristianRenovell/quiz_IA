@@ -1,8 +1,6 @@
 import {
   FormControl,
-  InputLabel,
   MenuItem,
-  OutlinedInput,
   Select,
   SelectChangeEvent,
   ThemeProvider,

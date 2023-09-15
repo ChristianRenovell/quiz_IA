@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import useQuestionsStore from '../store/questionStorage';
 import {
-  Alert,
   Box,
   Card,
   CardContent,
@@ -14,7 +13,7 @@ import {
 import FooterGame from '../components/footerGame/FooterGame';
 import QuestionComponent from '../components/question/Question';
 import '../index.css';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { REPEAT } from '../shared/const/urlParams';
 import useSnackBarStore from '../store/snackBarStorage';
 
