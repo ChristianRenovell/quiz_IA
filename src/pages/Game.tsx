@@ -63,7 +63,15 @@ function Game() {
           >
             <CardHeader
               title={
-                <Typography align="center" variant="h4">
+                <Typography
+                  align="center"
+                  sx={{
+                    fontSize: '23px',
+                    '@media (min-width: 700px)': {
+                      fontSize: '28px',
+                    },
+                  }}
+                >
                   {loading ? (
                     <Skeleton />
                   ) : (

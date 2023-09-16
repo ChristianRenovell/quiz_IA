@@ -58,7 +58,18 @@ const QuestionComponent: React.FC<QuestionComponentProps> = (props) => {
               sx={{
                 textAlign: 'center',
               }}
-              primary={<Typography variant="h5">{props.option}</Typography>}
+              primary={
+                <Typography
+                  sx={{
+                    fontSize: '18px',
+                    '@media (min-width: 700px)': {
+                      fontSize: '25px',
+                    },
+                  }}
+                >
+                  {props.option}
+                </Typography>
+              }
             />
           </ListItemButton>
         </ListItem>
