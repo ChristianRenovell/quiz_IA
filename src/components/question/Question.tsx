@@ -29,7 +29,10 @@ const QuestionComponent: React.FC<QuestionComponentProps> = (props) => {
   return (
     <div key={props.index}>
       <List>
-        <ListItem disablePadding sx={{ border: '1px solid #ffffff' }}>
+        <ListItem
+          disablePadding
+          sx={{ border: '1px solid #ffffff', zIndex: 9999 }}
+        >
           <ListItemButton
             sx={
               props.correct_answer === props.index && props.answered
@@ -49,6 +52,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = (props) => {
             }
             disabled={props.answered}
             onClick={() => selectedAnswered(props.index)}
+            onTouchStart={() => selectedAnswered(props.index)}
           >
             <ListItemText
               sx={{

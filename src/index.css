@@ -25,3 +25,10 @@
   color: rgb(0, 0, 0)!important;
 }
 
+.css-mhc70k-MuiGrid-root>.MuiGrid-item {
+  padding-left: 0px!important;
+}
+
+.css-1yo4f7t-MuiButtonBase-root-MuiListItemButton-root.Mui-disabled {
+  opacity: 1!important;
+}

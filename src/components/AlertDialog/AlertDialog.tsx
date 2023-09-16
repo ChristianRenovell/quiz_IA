@@ -27,12 +27,12 @@ interface AlertDialogProps {
   ) => void;
 }
 
-export default function AlertDialog({
+const AlertDialog = ({
   openDialog,
   handleClose,
   handleAcept,
   category,
-}: AlertDialogProps) {
+}: AlertDialogProps) => {
   const [numQuestions, setNumQuestions] = React.useState('10');
   const [difficulty, setDifficulty] = React.useState('Media');
 
@@ -65,7 +65,15 @@ export default function AlertDialog({
             {category} con un Quiz personalizado que hemos creado solo para ti.
           </DialogContentText>
           <ThemeProvider theme={themeSelect}>
-            <FormControl sx={{ m: 1, width: '15%' }}>
+            <FormControl
+              sx={{
+                m: 1,
+                width: '15%',
+                '@media (max-width: 600px)': {
+                  width: '30%',
+                },
+              }}
+            >
               <Typography variant="subtitle1" gutterBottom>
                 Preguntas
               </Typography>
@@ -82,7 +90,15 @@ export default function AlertDialog({
                 ))}
               </Select>
             </FormControl>
-            <FormControl sx={{ m: 1, width: '30%' }}>
+            <FormControl
+              sx={{
+                m: 1,
+                width: '30%',
+                '@media (max-width: 600px)': {
+                  width: '40%',
+                },
+              }}
+            >
               <Typography variant="subtitle1" gutterBottom>
                 Dificultad
               </Typography>
@@ -116,4 +132,6 @@ export default function AlertDialog({
       </Dialog>
     </div>
   );
-}
+};
+
+export default AlertDialog;

@@ -95,7 +95,7 @@ function Home() {
         <Grid
           container
           spacing={2}
-          style={{ marginTop: '50px', width: '60%', margin: '0 auto' }}
+          style={{ marginTop: '50px', width: '90%', margin: '0 auto' }}
         >
           {MOST_VIEWED.map((item, index) => (
             <Grid
