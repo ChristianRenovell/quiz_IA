@@ -4,7 +4,11 @@ import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 
 const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'prompt',
-  includeAssets: ['favicon.ico', 'apple-touch-icon.jpg', 'masked-icon.svg'],
+  includeAssets: [
+    './favicon.ico',
+    './apple-touch-icon.jpg',
+    './masked-icon.svg',
+  ],
   manifest: {
     name: 'Weather Ups',
     short_name: 'Weathe Ups',
