@@ -6,9 +6,9 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'prompt',
   includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
   manifest: {
-    name: 'Weather Ups',
-    short_name: 'Weathe Ups',
-    description: 'An app that can show weather forecast for your city.',
+    name: 'IA Quiz',
+    short_name: 'IA Quiz',
+    description: 'Quiz game generate by IA',
     icons: [
       {
         src: '/android-chrome-192x192.png',
@@ -41,7 +41,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     theme_color: '#241a00',
     background_color: '#424141',
     display: 'standalone',
-    scope: './dist/',
+    scope: '/',
     start_url: '/dist/index.html',
     orientation: 'portrait',
   },

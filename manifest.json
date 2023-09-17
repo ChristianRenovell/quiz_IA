@@ -35,6 +35,6 @@
     "background_color": "#424141",
     "display": "standalone",
     "scope": "/",
-    "start_url": "/",
+    "start_url": "/dist/index.html",
     "orientation": "portrait"
   }
