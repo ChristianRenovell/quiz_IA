@@ -16,6 +16,11 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
         type: 'image/png',
       },
       {
+        src: '/android-chrome-144x144.png',
+        sizes: '144x144',
+        type: 'image/png',
+      },
+      {
         src: '/android-chrome-512x512.png',
         sizes: '512x512',
         type: 'image/png',
@@ -36,8 +41,8 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     theme_color: '#241a00',
     background_color: '#424141',
     display: 'standalone',
-    scope: '/',
-    start_url: '/',
+    scope: './dist/',
+    start_url: '/dist/index.html',
     orientation: 'portrait',
   },
 };
